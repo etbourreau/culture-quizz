@@ -20,7 +20,11 @@ const getStorage = function (key, defaultValue) {
 }
 
 const setStorage = function (key, value) {
-    localStorage.setItem(key, isNil(value) ? null : JSON.stringify(value));
+    if (isNil(value)) {
+        localStorage.removeItem(key);
+    } else {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
 }
 
 /**
@@ -32,7 +36,7 @@ const random = function (val) {
     if (Array.isArray(val)) {
         return val[Math.floor(Math.random() * val.length)];
     } else if (typeof val === "number") {
-        return Math.floor(Math.random() * val);
+        return Math.floor(Math.random() * (val + 1));
     } else {
         return Math.random();
     }
@@ -59,4 +63,12 @@ const wait = async (ms) => {
     return new Promise(r => {
         setTimeout(r, ms)
     })
+}
+
+const playSound = (sound) => {
+    if (sound) {
+        sound.pause();
+        sound.currentTime = 0;
+        sound.play();
+    }
 }
