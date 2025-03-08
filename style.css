@@ -1,0 +1,82 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+    width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #333;
+    color: #ddd;
+}
+
+#app {
+    width: 100vw;
+    min-height: 100dvh;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+hr {
+    border-color: #333 !important;
+}
+
+small {
+    font-size: .65rem;
+}
+
+header {
+    height: 5rem;
+    border-bottom: thin solid #222;
+}
+
+.life {
+    --c: #777;
+  width: 3rem;
+  aspect-ratio: 1;
+  background: radial-gradient(at 70% 31%,var(--c) 29%,#0000 30%),
+  radial-gradient(at 30% 31%,var(--c) 29%,#0000 30%),
+  conic-gradient(from -45deg at 50% 84%,var(--c) 90deg,#0000 0) 
+   bottom/100% 50% no-repeat;
+   transition: background-color 0.3s ease-in-out;
+}
+.life.active {
+    --c: red;
+}
+
+.scoreboard-wrapper {
+    top: 50%;
+    right: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.scoreboard {
+    background-color: rgba(1, 1, 1, .4) !important;
+}
+
+.scoreboard>h3 {
+    padding-right: 1em;
+}
+
+.close-btn {
+    font-size: 1.1rem;
+    aspect-ratio: 1;
+    padding: .15rem .3rem;
+    margin-top: .5rem !important;
+    border-radius: .2rem;
+}
+
+.close-btn:hover {
+    background-color: rgba(0, 0, 0, .2);
+}
