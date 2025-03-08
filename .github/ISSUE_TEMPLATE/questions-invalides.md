@@ -2,7 +2,7 @@
 name: Questions invalides
 about: Il y a des corrections à faire sur une ou plusieurs questions
 title: "[QUESTIONS] Données à corriger"
-labels: ''
+labels: DATA
 assignees: ''
 
 ---
