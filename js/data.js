@@ -28,7 +28,6 @@ const QUESTIONS = {
         "Cinéma/Séries": [
             { "question": "Dans quel film de 1997 retrouve-t-on Jack et Rose sur un célèbre paquebot ?", "correct": "Titanic", "wrong": ["Pearl Harbor", "Le Grand Bleu", "Poseidon"] },
             { "question": "Quel est le prénom du sorcier à lunettes dans une célèbre saga débutée en 2001 au cinéma ?", "correct": "Harry", "wrong": ["Ron", "Draco", "Neville"] },
-            { "question": "Quel est le nom du clown maléfique dans 'Ça' de Stephen King, adapté au cinéma en 2017 ?", "correct": "Pennywise", "wrong": ["Joker", "Bozo", "Krusty"] },
             { "question": "Dans quelle saga de science-fiction retrouve-t-on les Jedi et les Sith ?", "correct": "Star Wars", "wrong": ["Star Trek", "Dune", "Battlestar Galactica"] },
             { "question": "Quel acteur incarne Iron Man dans l'univers cinématographique Marvel ?", "correct": "Robert Downey Jr.", "wrong": ["Chris Evans", "Mark Ruffalo", "Tom Holland"] },
             { "question": "Quel est le prénom du protagoniste principal de 'Breaking Bad' ?", "correct": "Walter", "wrong": ["Jesse", "Hank", "Saul"] },
@@ -252,7 +251,7 @@ const QUESTIONS = {
         "Jeux Vidéos": [
             { "question": "Quel est le nom du protagoniste principal dans la série de jeux vidéo 'The Legend of Zelda' ?", "correct": "Link", "wrong": ["Zelda", "Ganondorf", "Mario"] },
             { "question": "Dans quel jeu vidéo le personnage de Mario est-il apparu pour la première fois ?", "correct": "Donkey Kong", "wrong": ["Super Mario Bros.", "Mario Kart", "Super Mario 64"] },
-            { "question": "Dans 'Minecraft', quel bloc est utilisé pour créer une porte ?", "correct": "Bois", "wrong": ["Pierre", "Verre", "Fer"] },
+            { "question": "Dans 'Minecraft', quel bloc est utilisé pour créer une porte ?", "correct": "Planche", "wrong": ["Pierre", "Verre", "Bois"] },
             { "question": "Quel jeu vidéo est connu pour sa phrase emblématique 'War. War never changes' ?", "correct": "Fallout", "wrong": ["Call of Duty", "Battlefield", "Half-Life"] },
             { "question": "Quel personnage est le rival de Sonic dans ses jeux vidéo ?", "correct": "Shadow", "wrong": ["Tails", "Knuckles", "Dr. Eggman"] },
             { "question": "Quel est le nom du premier jeu de la série 'The Witcher' ?", "correct": "The Witcher", "wrong": ["The Witcher 2: Assassins of Kings", "The Witcher 3: Wild Hunt", "The Witcher: Monster Slayer"] },
@@ -465,7 +464,7 @@ const QUESTIONS = {
             { "question": "Que signifie l'acronyme HTTP ?", "correct": "HyperText Transfer Protocol", "wrong": ["High Tech Transfer Program", "Hyperlink Transmission Protocol", "Hosting Technical Transfer Protocol"] },
             { "question": "Quel célèbre forum américain a popularisé le format des 'Ask Me Anything' (AMA) ?", "correct": "Reddit", "wrong": ["4chan", "Quora", "Tumblr"] },
             { "question": "Quelle fonctionnalité a été supprimée de Twitter après le rachat par Elon Musk ?", "correct": "Les anciennes vérifications bleues gratuites", "wrong": ["Les hashtags", "Les threads", "Les sondages"] },
-            { "question": "Quel influenceur français est connu pour son contenu lié à l'exploration urbaine et aux lieux abandonnés ?", "correct": "Maxime Musqua", "wrong": ["Amixem", "Le Grand JD", "Squeezie"] },
+            { "question": "Quel influenceur français est connu pour son contenu lié à l'exploration urbaine et aux lieux abandonnés ?", "correct": "Le Grand JD", "wrong": ["Amixem", "Maxime Musqua", "Squeezie"] },
             { "question": "Quel Youtubeur français a organisé le GP Explorer, une course de Formule 4 entre créateurs de contenu ?", "correct": "Squeezie", "wrong": ["Gotaga", "Michou", "Amixem"] },
             { "question": "Quel célèbre mème met en scène un chien Shiba Inu avec un texte en Comic Sans ?", "correct": "Doge", "wrong": ["Cheems", "ShibaFace", "DoggyMeme"] },
             { "question": "En quelle année YouTube a-t-il ajouté le bouton 'pouce en bas' pour les vidéos ?", "correct": "2010", "wrong": ["2005", "2008", "2012"] },
@@ -480,7 +479,6 @@ const QUESTIONS = {
             { "question": "Quelle est la signification du mème 'Press F to Pay Respects' ?", "correct": "Rendre hommage à quelqu'un en ligne", "wrong": ["Dire qu'une blague est ratée", "Exprimer son soutien dans une discussion", "Signaler une erreur dans un jeu vidéo"] },
             { "question": "Quel influenceur français a été impliqué dans une polémique concernant des publicités trompeuses sur les crypto-monnaies ?", "correct": "Booba (via son conflit avec d'autres influenceurs)", "wrong": ["Tibo InShape", "Squeezie", "Mister V"] },
             { "question": "Quelle est l'application la plus téléchargée dans le monde en 2022 ?", "correct": "TikTok", "wrong": ["WhatsApp", "Instagram", "Facebook"] },
-            { "question": "Quel est le surnom du hacker ou groupe de hackers qui a menacé plusieurs influenceurs en 2023 en France ?", "correct": "Ragnar Le Breton", "wrong": ["Anonymous", "LulzSec", "TheDarkOverlord"] },
             { "question": "Quelle société possède Instagram ?", "correct": "Meta (anciennement Facebook)", "wrong": ["Twitter", "Google", "Snap Inc."] },
             { "question": "Quel est le langage de programmation principalement utilisé pour créer des pages web interactives ?", "correct": "JavaScript", "wrong": ["Python", "C++", "Java"] },
             { "question": "Quel youtubeur français est connu pour ses vidéos humoristiques et ses faux reportages ?", "correct": "McFly & Carlito", "wrong": ["Norman", "Mister V", "Antoine Daniel"] },

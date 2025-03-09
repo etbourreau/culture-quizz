@@ -1,4 +1,4 @@
-const CONFIG = {
+window.CONFIG = {
     NAME_KEY: "username",
     PB_KEY: "pb_score",
     SCOREBOARD_KEY: "scoreboard",
@@ -23,37 +23,42 @@ const CONFIG = {
     }
 }
 
-const DEFAULT_SCOREBOARD = [
-    { username: "Bob", score: 20 },
-    { username: "Pascale", score: 11 },
-    { username: "Didier", score: 7 },
+window.DEFAULT_SCOREBOARD = [
+    { username: "Bob", score: 27 },
+    { username: "Pascale", score: 18 },
+    { username: "Didier", score: 11 },
 ]
 
 const { createApp, ref } = Vue;
 
 const app = {
     setup() {
+        const config = window.CONFIG;
+        const default_scoreboard = clone(window.DEFAULT_SCOREBOARD)
+        delete window.CONFIG
+        delete window.DEFAULT_SCOREBOARD
         const STATES = {
             MENU: "menu",
             GAME: "game",
             END: "end",
         }
         const SOUNDS = {}
-        Object.keys(CONFIG.SOUNDS).forEach(sound => {
-            SOUNDS[sound] = new Audio(`assets/${CONFIG.SOUNDS[sound].name}`)
+        Object.keys(config.SOUNDS).forEach(sound => {
+            SOUNDS[sound] = new Audio(`assets/${config.SOUNDS[sound].name}`)
         })
         Object.keys(SOUNDS).forEach(k => {
-            if (!isNil(CONFIG.SOUNDS[k].volume)) {
-                SOUNDS[k].volume = CONFIG.SOUNDS[k].volume
+            if (!isNil(config.SOUNDS[k].volume)) {
+                SOUNDS[k].volume = config.SOUNDS[k].volume
             }
         })
         return {
             STATES,
             SOUNDS,
-            username: ref(getStorage(CONFIG.NAME_KEY, "")),
-            pb: ref(getStorage(CONFIG.PB_KEY, 0)),
-            scoreboard: ref(getStorage(CONFIG.SCOREBOARD_KEY, clone(DEFAULT_SCOREBOARD))),
-            flagged: ref(getStorage(CONFIG.FLAGGED_QUESTIONS_KEY, {})),
+            CONFIG: config,
+            username: ref(getStorage(config.NAME_KEY, "")),
+            pb: ref(getStorage(config.PB_KEY, 0)),
+            scoreboard: ref(getStorage(config.SCOREBOARD_KEY, default_scoreboard)),
+            flagged: ref(getStorage(config.FLAGGED_QUESTIONS_KEY, {})),
             state: ref(STATES.MENU),
             training: ref(false),
 
@@ -68,8 +73,8 @@ const app = {
             }),
             countQuestions: ref(1),
             gameScore: ref(0),
-            lives: ref(CONFIG.MAX_LIVES),
-            MAX_LIVES: CONFIG.MAX_LIVES,
+            lives: ref(config.MAX_LIVES),
+            MAX_LIVES: config.MAX_LIVES,
             currentQuestion: ref(0),
             selectedAnswer: ref(),
             questionTransition: ref(false),
@@ -93,13 +98,13 @@ const app = {
         },
         changeUsername(username) {
             this.username = username
-            setStorage(CONFIG.NAME_KEY, username)
+            setStorage(this.CONFIG.NAME_KEY, username)
         },
         getMaxDifficulty() {
             if (this.training) {
-                return CONFIG.MAX_DIFFICULTY
+                return this.CONFIG.MAX_DIFFICULTY
             } else {
-                return Math.min(CONFIG.MAX_DIFFICULTY, Math.floor(this.countQuestions / 10))
+                return Math.min(this.CONFIG.MAX_DIFFICULTY, Math.floor(this.countQuestions / 10))
             }
         },
         updateQuestion() {
@@ -126,11 +131,14 @@ const app = {
 
             if (!this.training) {
                 const time = now()
-                const delay = CONFIG.QUESTION_TIMEOUT * 1000
+                const delay = this.CONFIG.QUESTION_TIMEOUT * 1000
                 this.countdown = {
                     start: time,
                     end: time + delay,
                     process: setTimeout(async () => {
+                        if(this.state !== this.STATES.GAME) {
+                            return
+                        }
                         this.countdown.ended = true
                         const validAnswer = this.selectedAnswer === this.currentQuestion.correctIndex
                         if (validAnswer) {
@@ -140,13 +148,17 @@ const app = {
                             playSound(this.SOUNDS.WRONG)
                             this.lives--
                         }
-                        await wait(CONFIG.QUESTION_END_TIMEOUT * 1000)
+                        await wait(this.CONFIG.QUESTION_END_TIMEOUT * 1000)
                         if (validAnswer || this.lives > 0) {
                             this.questionTransition = true
-                            await wait(200)
-                            this.countQuestions++
-                            this.updateQuestion()
-                            this.questionTransition = false
+                            this.countdown.process = setTimeout(() => {
+                                if(this.state !== this.STATES.GAME) {
+                                    return
+                                }
+                                this.countQuestions++
+                                this.updateQuestion()
+                                this.questionTransition = false
+                            }, 200)
                         } else {
                             this.gameOver()
                         }
@@ -161,7 +173,7 @@ const app = {
             this.training = !!this.theme
             this.gameScore = 0
             this.countQuestions = 1
-            this.lives = CONFIG.MAX_LIVES
+            this.lives = this.CONFIG.MAX_LIVES
             this.updateQuestion()
             this.state = this.STATES.GAME
             this.questionTransition = false
@@ -191,7 +203,7 @@ const app = {
             if (this.gameScore > this.pb) {
                 this.pb = this.gameScore
                 this.newPb = true
-                setStorage(CONFIG.PB_KEY, this.pb)
+                setStorage(this.CONFIG.PB_KEY, this.pb)
             }
             if (this.gameScore > this.scoreboard[2].score) {
                 // remove previous self score
@@ -207,7 +219,7 @@ const app = {
                 while (this.scoreboard.length > 3) {
                     this.scoreboard.pop()
                 }
-                setStorage(CONFIG.SCOREBOARD_KEY, this.scoreboard)
+                setStorage(this.CONFIG.SCOREBOARD_KEY, this.scoreboard)
 
                 this.state = this.STATES.END
             } else if (!manual) {
@@ -225,7 +237,7 @@ const app = {
             if (!this.flagged[question]) {
                 this.flagged[question] = answers
                 this.currentQuestion.flagged = true
-                setStorage(CONFIG.FLAGGED_QUESTIONS_KEY, this.flagged)
+                setStorage(this.CONFIG.FLAGGED_QUESTIONS_KEY, this.flagged)
             } else {
                 delete this.flagged[question]
                 delete this.currentQuestion.flagged
@@ -234,9 +246,9 @@ const app = {
         dropFlag(question) {
             delete this.flagged[question]
             if (Object.keys(this.flagged).length === 0) {
-                setStorage(CONFIG.FLAGGED_QUESTIONS_KEY, null)
+                setStorage(this.CONFIG.FLAGGED_QUESTIONS_KEY, null)
             } else {
-                setStorage(CONFIG.FLAGGED_QUESTIONS_KEY, this.flagged)
+                setStorage(this.CONFIG.FLAGGED_QUESTIONS_KEY, this.flagged)
             }
         },
         copyFlaggedQuestions() {

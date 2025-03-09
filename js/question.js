@@ -49,6 +49,11 @@ const QuestionCmp = {
             return isNil(value)
         }
     },
+    computed: {
+        formattedQuestion() {
+            return this.data.question.replace(/\s\?$/, "&nbsp;?")
+        },
+    },
     template: `
         <div class="flex-center flex-column">
             <div class="card question text-white bg-secondary">
@@ -73,7 +78,7 @@ const QuestionCmp = {
                     </div>
                 </div>
                 <div class="card-body">
-                    <h3>{{ data.question }}</h3>
+                    <h3 v-html="formattedQuestion"></h3>
                     <div class="progress" v-if="isNil(correctIndex) && countdown.end">
                         <div class="progress-bar progress-bar-striped progress-bar-animated"
                         role="progressbar"
