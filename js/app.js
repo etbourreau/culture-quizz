@@ -246,21 +246,10 @@ const app = {
         },
     },
     template: `
-        <header class="w-100 flex-center position-relative">
+        <header class="w-100 flex-center">
             <h1>Quizz de Culture Générale</h1>
-            <div v-if="state === STATES.GAME && !training"
-                class="flex-center flex-row-reverse gap-2 position-absolute top-0 start-0 bottom-0">
-                Score: {{ gameScore }}
-            </div>
-            <div v-if="state === STATES.GAME && !training"
-                class="flex-center flex-row-reverse gap-2 position-absolute top-0 end-0 bottom-0">
-                <div v-for="n in MAX_LIVES"
-                    :key="n"
-                    class="life"
-                    :class="n <= lives ? 'active' : ''"></div>
-            </div>
         </header>
-        <div class="container flex-grow-1 flex-center">
+        <div class="container flex-grow-1 flex-center position-relative">
             <MenuCmp
                 v-if="state === STATES.MENU"
                 :username="username"
@@ -289,6 +278,18 @@ const app = {
                 :pb="pb"
                 :newPb="newPb"
                 @continue="() => state = STATES.MENU" />
+
+            <div v-if="state === STATES.GAME && !training"
+                class="flex-center flex-row-reverse position-absolute top-0 start-0 ms-4 mt-4">
+                Score: {{ gameScore }}
+            </div>
+            <div v-if="state === STATES.GAME && !training"
+                class="flex-center flex-row-reverse gap-2 position-absolute top-0 end-0 me-4 mt-4">
+                <div v-for="n in MAX_LIVES"
+                    :key="n"
+                    class="life"
+                    :class="n <= lives ? 'active' : ''"></div>
+            </div>
         </div>
     `,
 }
