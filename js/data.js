@@ -362,13 +362,11 @@ const QUESTIONS = {
             { "question": "Quel est le plat traditionnel britannique souvent consommé le dimanche ?", "correct": "Rôti de bœuf", "wrong": ["Fish and chips", "Pie", "Stew"] },
             { "question": "Le 'hamburger' vient de quel pays ?", "correct": "États-Unis", "wrong": ["Allemagne", "Canada", "France"] },
             { "question": "Quelle est la principale viande utilisée pour préparer le 'steak tartare' ?", "correct": "Bœuf", "wrong": ["Porc", "Agneau", "Poulet"] },
-            { "question": "Quel fruit est l'ingrédient principal de la 'tarte aux citrons' ?", "correct": "Citron", "wrong": ["Orange", "Fraise", "Banane"] },
             { "question": "Quel est le plat japonais souvent préparé avec du poisson cru ?", "correct": "Sushi", "wrong": ["Tempura", "Yakitori", "Ramen"] },
             { "question": "Quel ingrédient est nécessaire pour préparer une 'crêpe Suzette' ?", "correct": "Orange", "wrong": ["Citron", "Pomme", "Framboise"] },
             { "question": "Quel plat français est composé de viande, de légumes et de sauce brune ?", "correct": "Bœuf bourguignon", "wrong": ["Coq au vin", "Choucroute", "Gratin dauphinois"] },
             { "question": "Dans quel pays la spécialité culinaire 'pizza' est-elle originaire ?", "correct": "Italie", "wrong": ["France", "Espagne", "Grèce"] },
             { "question": "Quel est l'ingrédient principal de la soupe à l'oignon ?", "correct": "Oignon", "wrong": ["Carotte", "Pommes de terre", "Poireau"] },
-            { "question": "Quel fruit est utilisé dans une tarte aux citrons meringuée ?", "correct": "Citron", "wrong": ["Orange", "Fraise", "Pêche"] }
         ],
         "Nature": [
             { "question": "Quel est l’animal le plus rapide du monde ?", "correct": "Faucon pèlerin", "wrong": ["Guépard", "Antilope", "Aigle royal"] },
